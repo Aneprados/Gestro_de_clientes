@@ -14,8 +14,9 @@ def leer_texto(longitud_min=0, longitud_max=100, mensaje=None):
             return texto
 
 def dni_valido(dni, lista):
-    if not re.match(r'[0-9]{2}[A-Z]$', dni):
-        print("DNI incorrecto, debe cumplir el formato.")
+    # Cambiar la expresión regular para 8 dígitos y 1 letra
+    if not re.match(r'^[0-9]{8}[A-Z]$', dni):
+        print("DNI incorrecto, debe tener 8 dígitos y una letra al final.")
         return False
     if any(cliente.dni == dni for cliente in lista):
         print("DNI utilizado por otro cliente.")

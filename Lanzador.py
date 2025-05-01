@@ -24,13 +24,13 @@ class Lanzador:
                     print(cliente)
 
             elif opcion == '2':
-                dni = helpers.leer_texto(3, 3, "DNI (2 ints y 1 char)").upper()
+                dni = helpers.leer_texto(9, 9, "DNI (2 ints y 1 char)").upper()
                 cliente = db.Clientes.buscar(dni)
                 print(cliente if cliente else "Cliente no encontrado.")
 
             elif opcion == '3':
                 while True:
-                    dni = helpers.leer_texto(3, 3, "DNI (2 ints y 1 char)").upper()
+                    dni = helpers.leer_texto(9, 9, "DNI (8 dígitos y 1 letra)").upper()
                     if helpers.dni_valido(dni, db.Clientes.lista):
                         break
                 nombre = helpers.leer_texto(2, 30, "Nombre (de 2 a 30 chars)").capitalize()
@@ -39,7 +39,7 @@ class Lanzador:
                 print("Cliente añadido correctamente.")
 
             elif opcion == '4':
-                dni = helpers.leer_texto(3, 3, "DNI (2 ints y 1 char)").upper()
+                dni = helpers.leer_texto(9, 9, "DNI (8 dígitos y 1 letra)").upper()
                 cliente = db.Clientes.buscar(dni)
                 if cliente:
                     nombre = helpers.leer_texto(2, 30, f"Nombre [{cliente.nombre}]").capitalize()
@@ -50,7 +50,7 @@ class Lanzador:
                     print("Cliente no encontrado.")
 
             elif opcion == '5':
-                dni = helpers.leer_texto(3, 3, "DNI (2 ints y 1 char)").upper()
+                dni = helpers.leer_texto(9, 9, "DNI (8 dígitos y 1 letra)").upper()
                 if db.Clientes.borrar(dni):
                     print("Cliente borrado correctamente.")
                 else:
