@@ -1,14 +1,23 @@
 import csv
-import config
 from Cliente import Cliente
+
+try:
+    import config
+except ImportError:
+    raise ImportError("El módulo 'config' no se encuentra. Asegúrate de que el archivo 'config.py' existe y está en el mismo directorio o en el PYTHONPATH.")
 class Clientes:
     lista = []
 
-    with open(config.DATABASE_PATH, newline="\n") as fichero:
-        reader = csv.reader(fichero, delimiter=";")
-        for dni, nombre, apellido in reader:
-            cliente = Cliente(dni, nombre, apellido)
-            lista.append(cliente)
+    try:
+        with open(config.DATABASE_PATH, newline="\n") as fichero:
+            reader = csv.reader(fichero, delimiter=";")
+            for dni, nombre, apellido in reader:
+                cliente = Cliente(dni, nombre, apellido)
+                lista.append(cliente)
+    except FileNotFoundError:
+        # Handle the case where the database file does not exist
+        with open(config.DATABASE_PATH, "w", newline="\n") as fichero:
+            pass  # Create an empty file
 
     @staticmethod
     def guardar():
